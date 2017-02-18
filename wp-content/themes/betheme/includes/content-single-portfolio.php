@@ -83,95 +83,9 @@ $translate['task'] 			= mfn_opts_get('translate') ? mfn_opts_get('translate-task
 		} 
 	?>
 	
-	<?php if( get_post_meta( get_the_ID(), 'mfn-post-template', true ) != 'intro' ): ?>
+	<?php if( get_post_meta( get_the_ID(), 'mfn-post-template', true ) != 'intro' ): // sisu kustutatud 17.02.17 ?>
 
-		<div class="section section-post-header">
-			<div class="section_wrapper clearfix">
-		
-				<?php 
-					// single post navigation | header
-					if( ! $single_post_nav['hide-header'] ){
-						echo mfn_post_navigation_header( $post_prev, $post_next, mfn_wpml_ID( $portfolio_page_id ), $translate );
-					}
-				?>
-			
-				<div class="column one post-header">
-				
-					<div class="button-love"><?php echo mfn_love() ?></div>
-					
-					<div class="title_wrapper">
-					
-						<?php 
-							$h = mfn_opts_get( 'title-heading', 1 );
-							echo '<h'. $h .' class="entry-title" itemprop="headline">'. get_the_title() .'</h'. $h .'>';
-						?>
-						
-						<div class="post-meta clearfix">
-							<div class="author-date">
-								<span class="author"><?php echo $translate['published']; ?> <i class="icon-user"></i> <a href="<?php echo get_author_posts_url( get_the_author_meta('ID') ); ?>"><?php the_author_meta( 'display_name' ); ?></a></span> 
-								<span class="date"><?php echo $translate['at']; ?> <i class="icon-clock"></i><time class="entry-date" datetime="<?php the_date('c'); ?>" itemprop="datePublished" pubdate><?php echo get_the_date(); ?></time></span>
-							</div>
-							<div class="category">
-								<span class="cat-btn"><?php echo $translate['categories']; ?> <i class="icon-down-dir"></i></span>
-								<div class="cat-wrapper"><ul><?php echo $categories ?></ul></div>
-							</div>
-						</div>
-						
-					</div>
-					
-				</div>
-		
-				<div class="column one single-photo-wrapper <?php echo mfn_post_thumbnail_type( get_the_ID() ); ?>">
-					
-					<?php if( mfn_opts_get( 'share' ) ): ?>
-					<div class="share_wrapper">
-						<span class='st_facebook_vcount' displayText='Facebook'></span>
-						<span class='st_twitter_vcount' displayText='Tweet'></span>
-						<span class='st_pinterest_vcount' displayText='Pinterest'></span>
-						
-						<script src="http<?php mfn_ssl(1); ?>://w<?php mfn_ssl(1); ?>.sharethis.com/button/buttons.js"></script>
-						<script>stLight.options({publisher: "1390eb48-c3c3-409a-903a-ca202d50de91", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
-					</div>
-					<?php endif; ?>
-					
-					<?php if( ! get_post_meta(get_the_ID(), 'mfn-post-slider-header', true) ): ?>
-					<div class="image_frame scale-with-grid">
-					
-						<div class="image_wrapper">
-							<?php echo mfn_post_thumbnail( get_the_ID() ); ?>
-						</div>
-						
-						<?php 
-							if( $caption = get_post( get_post_thumbnail_id() )->post_excerpt ){
-						    	echo '<p class="wp-caption-text '. mfn_opts_get( 'featured-image-caption' ) .'">'. $caption .'</p>';
-							}
-						?>
-								
-					</div>
-					<?php endif; ?>
-					
-				</div>
-				
-				<div class="column one project-description">
-					<ul>
-						<?php 
-							if( $client = get_post_meta( get_the_ID(), 'mfn-post-client', true ) ){
-								echo '<li class="one-third"><span class="label">'. $translate['client'] .'</span>'. $client .'</li>';
-							}
-							echo '<li class="one-third"><span class="label">'. $translate['date'] .'</span>'. get_the_date() .'</li>';
-							if( $link = get_post_meta( get_the_ID(), 'mfn-post-link', true ) ){
-								echo '<li class="one-third"><span class="label">'. $translate['website'] .'</span><a target="_blank" href="'. $link .'"><i class="icon-forward"></i>'. $translate['view'] .'</a></li>';
-							}
-							if( $task = get_post_meta( get_the_ID(), 'mfn-post-task', true ) ){
-								echo '<li><span class="label">'. $translate['task'] .'</span>'. $task .'</li>';
-							}
-						?>
-					</ul>
-				</div>
-				
-			</div>
-		</div>
-		
+
 	<?php endif; ?>	
 	
 	<div class="entry-content" itemprop="mainContentOfPage">

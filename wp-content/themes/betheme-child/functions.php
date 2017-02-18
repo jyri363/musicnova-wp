@@ -34,6 +34,8 @@ function mfnch_enqueue_styles() {
 	// Enqueue the child stylesheet
 	wp_dequeue_style( 'style' );
 	wp_enqueue_style( 'style', get_stylesheet_directory_uri() .'/style.css' );
+	// 
+	//wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css');
 	
 }
 
@@ -53,4 +55,16 @@ function mfnch_textdomain() {
  * 
  * if you want to override theme functions use the example below
  * --------------------------------------------------------------------------- */
-// require_once( get_stylesheet_directory() .'/includes/content-portfolio.php' );
+require_once( get_stylesheet_directory() .'/includes/content-portfolio.php' );
+//require_once( get_stylesheet_directory() .'/includes/content-single-portfolio.php' );
+
+// As of 3.1.10, Customizr doesn't output an html5 form.
+add_theme_support( 'html5', array( 'search-form' ) );
+add_filter('wp_nav_menu_items', 'add_search_form_to_menu', 10, 2);
+function add_search_form_to_menu($items, $args) {
+  // If this isn't the main navbar menu, do nothing
+  if( !($args->theme_location == 'main') ) // with Customizr Pro 1.2+ and Cusomizr 3.4+ you can chose to display the saerch box to the secondary menu, just replacing 'main' with 'secondary'
+    return $items;
+  // On main menu: put styling around search and append it to the menu items
+  return $items . '<li class="my-nav-menu-search">' . get_search_form(false) . '</li>';
+}

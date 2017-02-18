@@ -64,14 +64,7 @@
 			
 				<!-- Logo -->
 				<?php get_template_part( 'includes/include', 'logo' ); ?>
-				
-				<div class="search_wrapper">
-					<!-- #searchform -->
-					
-					<?php get_search_form( true ); //muudetud 17.02.17 ?>
-					
-				</div>	
-				
+			
 				<div class="menu_wrapper">
 					<?php 
 						if( ( mfn_header_style( true ) != 'header-overlay' ) && ( mfn_opts_get( 'menu-style' ) != 'hide' ) ){
@@ -112,7 +105,12 @@
 					<?php mfn_opts_show( 'header-banner' ); ?>
 				</div>
 				
-							
+				<div class="search_wrapper">
+					<!-- #searchform -->
+					
+					<?php get_search_form( true ); ?>
+					
+				</div>				
 				
 			</div>
 			

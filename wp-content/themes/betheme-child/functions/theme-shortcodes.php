@@ -675,29 +675,24 @@ if( ! function_exists( 'sc_story_box' ) )
 			$target = false;
 		}	
 		
-		$output = '<div class="story_box1 '. $style .'">';
+		$output = '<div class="story_box '. $style .'">';
 			if( $animate ) $output .= '<div class="animate" data-anim-type="'. $animate .'">';
-				//if( $link ) $output .= '<a href="'. $link .'" '. $target .'>';
-				
-					//$output .= '<div class="desc_wrapper">';
+				if( $link ) $output .= '<a href="'. $link .'" '. $target .'>';
+					$output .= '<div class="desc_wrapper">';
 						if( $title ){
-							$output .= '<h2>';
-							if( $link ) $output .= '<a href="'. $link .'" '. $target .' class="button-color">';
-							$output .= '<i class="icon-right-open"></i>'. $title .'</h2>';
-							//$output .= '<hr class="hr_color">';
-							if( $link ) $output .= '</a>';
+							$output .= '<h3 class="themecolor">'. $title .'</h3>';
+							$output .= '<hr class="hr_color">';
 						}	
-						$output .= '<div class="featured_box_content"><p>'. do_shortcode( $content ).'</p>';
-					//$output .= '</div>';
-					if( $link ) $output .= '<a href="'. $link .'" '. $target .'>';
+						$output .= '<div class="desc">'. do_shortcode( $content ) .'</div>';
+					$output .= '</div>';
+					
 					$output .= '<div class="photo_wrapper">';
 						$output .= '<img class="scale-with-grid" src="'. $image .'" alt="'. mfn_get_attachment_data( $image, 'alt' ) .'" width="'. mfn_get_attachment_data( $image, 'width' ) .'" height="'. mfn_get_attachment_data( $image, 'height' ) .'"/>';
 					$output .= '</div>';
-					$output .= '</div>';
-					if( $link ) $output .= '</a>';
-								
+					
+					
 	
-				//if( $link ) $output .= '</a>';
+				if( $link ) $output .= '</a>';
 			if( $animate ) $output .= '</div>';
 		$output .= '</div>'."\n";
 
