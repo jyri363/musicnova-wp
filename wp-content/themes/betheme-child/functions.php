@@ -68,3 +68,4 @@ function add_search_form_to_menu($items, $args) {
   // On main menu: put styling around search and append it to the menu items
   return $items . '<li class="my-nav-menu-search">' . get_search_form(false) . '</li>';
 }
+
