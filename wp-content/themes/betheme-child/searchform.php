@@ -17,7 +17,7 @@ $translate['search-placeholder'] = mfn_opts_get('translate') ? mfn_opts_get('tra
 	<?php endif;?>
 
 	
-	<input type="text" class="field" name="s" id="s" placeholder="<?php echo $translate['search-placeholder']; ?>" />			
+	<input type="text" class="field" name="s" id="s" placeholder="<?php //echo $translate['search-placeholder']; ?>" />			
 	<input type="submit" class="submit" value="" style="display:none;" />
 	
 </form>

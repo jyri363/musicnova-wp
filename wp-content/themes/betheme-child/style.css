@@ -10,6 +10,18 @@ Version: 		1.6.1
 
 /* Theme customization starts here
 -------------------------------------------------------------- */
+/*********
+- global 
+- header
+ - action bar
+ - menu
+ - subheader
+- content
+ - home / global
+ - portfolio
+- footer
+**********/
+/******** global ********/
 body, h1, h2, h3, h4, h5, h6,
 .button, input[type="button"], input[type="submit"],
 input[type="text"], input[type="password"], input[type="email"], textarea, select, button {
@@ -18,20 +30,37 @@ input[type="text"], input[type="password"], input[type="email"], textarea, selec
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, tt, var, b, u, i, center, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
     /*border: 0px !important;*/
 }
+body:not(.template-slider) #Header { min-height: auto; }
 /*********** header ****************/
 
+/* action bar */
+.header-classic #Action_bar, .header-fixed #Action_bar, .header-plain #Action_bar, .header-split #Action_bar, .header-stack #Action_bar {
+    background-color: transparent !important;
+}
 .header-classic #Action_bar {
     float: right;
 }
 #Action_bar {
-    position: relative;
+    position: absolute !important;
     left: 0;
     top: 0;
     width: 100%;
     z-index: 30;
     line-height: 12px;
 }
-
+#Action_bar .contact_details {
+    float: right;
+    color: rgba(255,255,255,0.5);
+}
+#Action_bar .contact_details li, #Action_bar .social li a 
+{ color: #555555; }
+.is-sticky #Action_bar {
+    display: none !important;
+}
+/* menu */
+.menu_wrapper {
+    background: url(http://jjk.wpeesti.ee/test/musicnova/wp-content/uploads/2017/02/bg_mainnav.png) left 10px;
+}
 @media only screen and (min-width: 1240px) {
 	#Top_bar.is-sticky {
 	}
@@ -43,19 +72,12 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     /*padding: 35px 0 35px 0 !important;
 	margin-top: 10px;*/
 }
-#Action_bar .contact_details {
-    float: right;
-    color: rgba(255,255,255,0.5);
-}
-.menu_wrapper {
-    background: url(http://jjk.wpeesti.ee/test/musicnova/wp-content/uploads/2017/02/bg_mainnav.png) left 10px;
-}
 #Top_bar .search_wrapper {
     position: absolute;
     left: auto;
     top: auto;
 	right: 0;
-    /*display: block !important;*/
+    display: block !important;
     z-index: 999;
     width: auto;
 	/*height: 100%;*/
@@ -66,6 +88,10 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     box-sizing: border-box;
 	margin: 30px 0 0 0;
 	float: right;
+}
+#Top_bar.is-sticky  .search_wrapper  {
+    padding: 12px 0 0 0!important;
+	margin: 0 0 0 0;
 }
 #Top_bar .search_wrapper input[type="text"] {
     width: 0px;
@@ -84,7 +110,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     /* CHANGE THIS LINK TO POINT TO YOUR SEARCH ICON */
     background-image: url(/test/musicnova/wp-content/themes/betheme-child/img/search-icon.png);
     background-repeat: no-repeat;
-    background-position: 5px center;
+    background-position: 10px center;
 
     border: none;
 	    border-radius: 30px;
@@ -129,10 +155,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     top: auto;
     bottom: 0px;
 }
-body:not(.template-slider) #Header { min-height: auto; }
-
-#Action_bar .contact_details li, #Action_bar .social li a 
-{ color: #555555; }
 
 #Top_bar .menu_wrapper {
     float: right;
@@ -151,23 +173,44 @@ body:not(.template-slider) #Header { min-height: auto; }
    
 }
 
+#menu-main-menu {
+	margin:24px 40px 0 0;
+}
+.is-sticky #menu-main-menu {
+    margin:0 40px 0 0;
+}
 #Top_bar .menu > li > a {
-    padding: 15px 0 !important;
+    padding: 27px 0 20px 0!important;
+}
+#Top_bar.is-sticky  .menu > li > a  {
+    padding: 15px 0 15px 0!important;
 }
 #Top_bar .menu > li > a span:not(.description) {
     padding: 0 10px;
+}
+@media only screen and (max-width: 1199px) and (min-width: 959px) {
+	#Top_bar .menu li > a span:not(.description){
+		padding: 0 4px !important;
+		font-size: 12px !important;
+		font-weight: 600;
+	}
+}
+@media only screen and (max-width: 1239px) and (min-width: 1099px) {
+	#Top_bar .menu li > a span:not(.description){
+		padding: 0 4px !important;
+		font-size: 14px !important;
+		font-weight: 400;
+	}
 }
 .icon-search-fine {     display: none;}
 .is-sticky {
     background-color: #ffffff !important;
 }
-.is-sticky #Action_bar {
-    display: none !important;
-}
+
 @media only screen and (max-width: 767px) {
     body:not(.template-slider):not(.header-simple) #Header { min-height: auto; }
 }
-/**********Subheader*****************/
+/* subheader */
 #Subheader .title {
     width: 30%;
 }
@@ -205,7 +248,8 @@ body:not(.template-slider) #Header { min-height: auto; }
         width: auto;
     }
 }
-
+/******** content ********/
+/* home / global */
 .homeCenter {
 	font-size: 17px;
     font-weight: 300;
@@ -321,9 +365,29 @@ margin-bottom: 0px;
     display: inline-block;
     speak: none;
 }
-
-/************** filters wrapper *********************/
+/* portfolio */
+.subwrap-MI {
+    border-width: 0 !important;
+}
+/* filters */
 #Filters .filters_wrapper ul li {
     width: auto;
     margin: 0px;
+}
+.image_frame .image_wrapper .image_links {
+    bottom: 0;
+}
+img.scale-with-grid, #Content img {
+    max-width: none;
+    height: 100%;
+}
+/************** footer *********************/
+
+#Footer h1, #Footer h1 a, #Footer h1 a:hover, #Footer h2, #Footer h2 a, #Footer h2 a:hover, #Footer h3, #Footer h3 a, #Footer h3 a:hover, #Footer h4, #Footer h4 a, #Footer h4 a:hover, #Footer h5, #Footer h5 a, #Footer h5 a:hover, #Footer h6, #Footer h6 a, #Footer h6 a:hover {
+    color: #505050 !important;
+}
+
+#Footer .widgets_wrapper {
+    background-color: #f8f8f8;
+	color: #888 !important;
 }
