@@ -31,6 +31,7 @@ function mfnch_enqueue_styles() {
 		wp_enqueue_style( 'mfn-rtl', get_template_directory_uri() . '/rtl.css' );
 	}
 	
+
 	// Enqueue the child stylesheet
 	wp_dequeue_style( 'style' );
 	wp_enqueue_style( 'style', get_stylesheet_directory_uri() .'/style.css' );
@@ -39,6 +40,12 @@ function mfnch_enqueue_styles() {
 	
 }
 
+function my_assets() {
+	wp_register_script( 'Isotope', CHILD_THEME_URI . '/js/jquery.isotope.min.js', array( 'jquery' ) , '1.5.25', false);
+	wp_enqueue_script( 'Isotope' );
+}
+
+add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 /* ---------------------------------------------------------------------------
  * Load Textdomain
@@ -68,4 +75,34 @@ function add_search_form_to_menu($items, $args) {
   // On main menu: put styling around search and append it to the menu items
   return $items . '<li class="my-nav-menu-search">' . get_search_form(false) . '</li>';
 }
+
+
+
+// wpcf7 custom shortcode
+
+add_action( 'wpcf7_init', 'custom_add_shortcode_clock' );
+ 
+function custom_add_shortcode_clock() {
+    wpcf7_add_shortcode( 'clock', 'custom_clock_shortcode_handler' ); // "clock" is the type of the form-tag
+}
+ 
+function custom_clock_shortcode_handler( $tag ) {
+    return date_i18n( get_option( 'time_format' ) );
+}
+//
+wpcf7_add_shortcode('custom_number', 'wpcf7_custom_number_shortcode_handler');
+
+function wpcf7_custom_number_shortcode_handler($tag) {
+	//if (!is_array($tag)) return '';
+	//
+    $name = $tag['name'];
+    //if (empty($name)) return '';
+	
+    $number = "0.00"; 
+    $html = '<span class="wpcf7-form-control-wrap '.$name.'">
+	<input type="number" name="number" value="' . $number . '" min="0.00" step="0.01"  class="wpcf7-form-control wpcf7-text" />
+	</span>';
+    return $html;
+}
+
 

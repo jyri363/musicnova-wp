@@ -31,6 +31,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     /*border: 0px !important;*/
 }
 body:not(.template-slider) #Header { min-height: auto; }
+@media only screen and (max-width: 1239px) and (min-width: 960px) {
+	.section_wrapper, .container, .with_aside .content_wrapper {
+		max-width: 1200px;
+	}
+}
 /*********** header ****************/
 
 /* action bar */
@@ -59,7 +64,7 @@ body:not(.template-slider) #Header { min-height: auto; }
 }
 /* menu */
 .menu_wrapper {
-    background: url(http://jjk.wpeesti.ee/test/musicnova/wp-content/uploads/2017/02/bg_mainnav.png) left 10px;
+    background: url(../../uploads/2017/02/bg_mainnav.png) left 10px no-repeat;
 }
 @media only screen and (min-width: 1240px) {
 	#Top_bar.is-sticky {
@@ -75,13 +80,14 @@ body:not(.template-slider) #Header { min-height: auto; }
 #Top_bar .search_wrapper {
     position: absolute;
     left: auto;
-    top: auto;
+    top: -5px;
 	right: 0;
+	bottom: auto;
     display: block !important;
     z-index: 999;
     width: auto;
 	/*height: 100%;*/
-    padding: 30px 0 25px 10px;
+    padding: 35px 0 20px 10px;
 	    line-height: 60px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -108,7 +114,7 @@ body:not(.template-slider) #Header { min-height: auto; }
 
     background-color: #f2f2f2;
     /* CHANGE THIS LINK TO POINT TO YOUR SEARCH ICON */
-    background-image: url(/test/musicnova/wp-content/themes/betheme-child/img/search-icon.png);
+    background-image: url(../betheme-child/img/search-icon.png);
     background-repeat: no-repeat;
     background-position: 10px center;
 
@@ -185,30 +191,59 @@ body:not(.template-slider) #Header { min-height: auto; }
 #Top_bar.is-sticky  .menu > li > a  {
     padding: 15px 0 15px 0!important;
 }
+
 #Top_bar .menu > li > a span:not(.description) {
     padding: 0 10px;
 }
-@media only screen and (max-width: 1199px) and (min-width: 959px) {
-	#Top_bar .menu li > a span:not(.description){
-		padding: 0 4px !important;
-		font-size: 12px !important;
-		font-weight: 600;
+@media only screen and (max-width: 958px) {
+    #Top_bar .menu > li > a {
+		padding: 0px 25px!important;
 	}
 }
-@media only screen and (max-width: 1239px) and (min-width: 1099px) {
-	#Top_bar .menu li > a span:not(.description){
-		padding: 0 4px !important;
-		font-size: 14px !important;
-		font-weight: 400;
+@media only screen and (max-width: 958px) {
+    #Top_bar.is-sticky  .menu > li > a   {
+		padding: 0px 25px!important;
 	}
+}
+@media only screen and (max-width: 1199px) and (min-width: 959px) {
+	#Top_bar .menu li > a span:not(.description){
+		padding: 0 5px !important;
+		font-size: 14px !important;
+	}
+}
+@media only screen and (max-width: 999px) and (min-width: 959px) {
+	#Top_bar .menu li > a span:not(.description){
+		padding: 0 3px !important;
+		font-size: 12px !important;
+	}
+}
+#Top_bar a.responsive-menu-toggle {
+    right: 50px;
+    top: 60%;
 }
 .icon-search-fine {     display: none;}
 .is-sticky {
     background-color: #ffffff !important;
 }
-
+#Top_bar a.responsive-menu-toggle i {
+	color: #a0a0a0!important;
+	font-size: 28px!important;
+	font-weight: 600!important;
+}
 @media only screen and (max-width: 767px) {
     body:not(.template-slider):not(.header-simple) #Header { min-height: auto; }
+}
+@media only screen and (max-width: 767px){
+	#Top_bar a.responsive-menu-toggle {
+		right: auto;
+		left: 50px;
+	}
+	#Top_bar .search_wrapper {
+		right: 50px;
+		top: 50px;
+		padding: 0;
+		margin: 0;
+	}
 }
 /* subheader */
 #Subheader .title {
@@ -291,6 +326,27 @@ a.button-color:hover {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+.fancy_heading .title {
+    font-size: 20px !important;
+    line-height: 30px !important;
+	color: #505050 !important;
+}
+.testimonials_slider a.button {
+    background-color: #b7b7b7 !important;
+    color: #ffffff !important;
+}
+.testimonials_slider a.button:hover {
+	background-color: #54c5d0 !important;
+}
+a.button .button_icon i {
+    color: #ffffff !important;
+}
+.fancy_heading_line {
+    padding-bottom: 5px !important;
+}
+.testimonials_slider .testimonials_slider_ul li .bq_wrapper {
+    background-color: transparent !important;
+}
 /*****/
 /* box-shadow */
 .box-shadow {
@@ -334,7 +390,8 @@ margin-bottom: 0px;
   color: #222222;
 
 }
-
+/****/
+span.wpcf7-list-item { display: block; }
 /** icon **/
 [class^="icon-"],
 [class*=" icon-"] {
@@ -369,18 +426,48 @@ margin-bottom: 0px;
 .subwrap-MI {
     border-width: 0 !important;
 }
+.portfolio-item .image_frame .image_wrapper .image_links {
+    bottom: 0;
+}
+.portfolio-item img.scale-with-grid, #Content .portfolio-item img {
+    max-width: none;
+    height: 100%;
+}
+.image_frame .image_wrapper .image_links a {
+    color: #505050 !important;
+	font-weight: 500 !important;
+	font-size: 16px !important;
+}
+.image_frame:hover .image_wrapper .image_links a, .image_frame .image_wrapper .image_links a:hover {
+    background: #54c5d0;
+    color: #fff !important;
+}
+.portfolio img.scale-with-grid, .portfolio #Content img {
+    width: 100%;
+}
+.artist_pic {
+	text-align: center;
+}
+.portfolio  .button.color {
+	margin-top:25px;
+}
+
+.song_list p {
+    font-size: 13px;
+    margin-bottom: 0;
+    display: inline-block;
+    zoom: 1;
+    width: 47%;
+    padding-right: 2%;
+    vertical-align: top;
+}
+
 /* filters */
 #Filters .filters_wrapper ul li {
     width: auto;
     margin: 0px;
 }
-.image_frame .image_wrapper .image_links {
-    bottom: 0;
-}
-img.scale-with-grid, #Content img {
-    max-width: none;
-    height: 100%;
-}
+
 /************** footer *********************/
 
 #Footer h1, #Footer h1 a, #Footer h1 a:hover, #Footer h2, #Footer h2 a, #Footer h2 a:hover, #Footer h3, #Footer h3 a, #Footer h3 a:hover, #Footer h4, #Footer h4 a, #Footer h4 a:hover, #Footer h5, #Footer h5 a, #Footer h5 a:hover, #Footer h6, #Footer h6 a, #Footer h6 a:hover {

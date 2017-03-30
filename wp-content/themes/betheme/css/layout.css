@@ -283,7 +283,7 @@ body:not(.template-slider) #Header{min-height:250px}
 	/* Search wrapper */
 	#Top_bar .search_wrapper{position:absolute;left:0;top:100%;display:none;z-index:201;width:100%;padding:15px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
 	#Top_bar .search_wrapper input[type="text"]{width:100%;margin:0;box-sizing:border-box;-webkit-box-shadow:0 0 0;box-shadow:0 0 0;padding-left:35px;background:none;border-width:0 0 1px;border-style:solid;border-color:rgba(255,255,255,.08)!important;font-size:15px}
-	#Top_bar .search_wrapper input[type="text"]:focus{background-color:transparent!important}
+	#Top_bar .search_wrapper input[type="text"]:focus{/*background-color:transparent!important*/}
 	#Top_bar .search_wrapper .icon_search,#Top_bar .search_wrapper .icon_close{position:absolute;top:25px;font-size:22px;line-height:22px;display:block}
 	#Top_bar .search_wrapper .icon_search{left:18px;color:rgba(0,0,0,.5)}
 	#Top_bar .search_wrapper .icon_close{right:18px;color:#fff;opacity:.3;filter:alpha(opacity=30);-webkit-transition:all .2s ease-in-out;-moz-transition:all .2s ease-in-out;-o-transition:all .2s ease-in-out;-ms-transition:all .2s ease-in-out;transition:all .2s ease-in-out}

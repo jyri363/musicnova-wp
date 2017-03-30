@@ -94,10 +94,22 @@ $translate['task'] 			= mfn_opts_get('translate') ? mfn_opts_get('translate-task
 								// Content Builder & WordPress Editor Content
 								mfn_builder_print( get_the_ID() );
 							?>
+							<?php
+
+							if(get_field('song_list'))
+							{
+								echo '<div class="column mcb-column one column_fancy_heading "><div class="fancy_heading fancy_heading_line"><h2 class="title">';
+								_e("Song list");
+								echo '</h2></div></div>';
+								echo '<div class="column mcb-column one column_column  column-margin-0px song_list"><div class="column_attr clearfix" style="">';
+								echo get_field('song_list');
+								echo '</div></div>';
+							}						
+						?>
 						</div>
 					</div>
 					<div class="column mcb-column two-fifth column_column  column-margin- <?php echo mfn_post_thumbnail_type( get_the_ID() ); ?>">
-						<div class="column_attr clearfix" style="">
+						<div class="column_attr artist_pic clearfix" style="">
 						<?php if( mfn_opts_get( 'share' ) ): ?>
 							<div class="share_wrapper">
 								<span class='st_facebook_vcount' displayText='Facebook'></span>
@@ -123,10 +135,12 @@ $translate['task'] 			= mfn_opts_get('translate') ? mfn_opts_get('translate-task
 								?>
 										
 							</div>
-						<?php endif;
+						<?php endif; ?>
+						<a href="<?php echo esc_url( get_permalink( get_page_by_title( 'Tarjouspyyntö' ) ) ); ?>" class="button color"><i class="icon-star white"></i> Tarjouspyyntö</a>
+						<?php 
 							if(get_field('jjk-audio'))
 							{
-								echo '<p>' . get_field('jjk-audio') . '</p>';
+								echo get_field('jjk-audio');
 							}						
 						?>
 						</div>
@@ -210,13 +224,13 @@ $translate['task'] 			= mfn_opts_get('translate') ? mfn_opts_get('translate-task
 											
 										echo '</div>';
 										
-										echo '<div class="date_label">'. get_the_date() .'</div>';
+										//echo '<div class="date_label">'. get_the_date() .'</div>';
 									
-										echo '<div class="desc">';
-											echo '<h4><a href="'. get_permalink() .'">'. get_the_title() .'</a></h4>';
-											echo '<hr class="hr_color" />';
-											echo '<a href="'. get_permalink() .'" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">'. $translate['readmore'] .'</span></a>';
-										echo '</div>';
+										//echo '<div class="desc">';
+											//echo '<h4><a href="'. get_permalink() .'">'. get_the_title() .'</a></h4>';
+											//echo '<hr class="hr_color" />';
+											//echo '<a href="'. get_permalink() .'" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">'. $translate['readmore'] .'</span></a>';
+										//echo '</div>';
 										
 									echo '</div>';
 								}
