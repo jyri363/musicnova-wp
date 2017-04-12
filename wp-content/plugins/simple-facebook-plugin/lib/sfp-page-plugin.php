@@ -21,9 +21,9 @@ class SFPPagePluginWidget extends WP_Widget {
 	/**
 	 * Register widget with WordPress
 	 */
-	function SFPPagePluginWidget() {
+	function __construct() {
 		$widget_ops = array( 'description' => 'Display Facebook Page Plugin.' );
-		parent::WP_Widget( 'sfp_page_plugin_widget', $name = 'SFP - Facebook Page Plugin',  $widget_ops);
+		parent::__construct( 'sfp_page_plugin_widget', $name = 'SFP - Facebook Page Plugin',  $widget_ops);
 	}
 
 	/**
@@ -71,7 +71,10 @@ class SFPPagePluginWidget extends WP_Widget {
 		$instance['height']			= strip_tags( $new_instance['height'] );
 		$instance['hide_cover']		= isset( $new_instance['hide_cover'] );
 		$instance['show_facepile']	= isset( $new_instance['show_facepile'] );
-		$instance['show_posts']		= isset( $new_instance['show_posts'] );
+		$instance['small_header']	= isset( $new_instance['small_header'] );
+		$instance['timeline']		= isset( $new_instance['timeline'] );
+		$instance['events']			= isset( $new_instance['events'] );
+		$instance['messages']		= isset( $new_instance['messages'] );
 		
 		$instance['locale']			= strip_tags( $new_instance['locale'] );
 	
@@ -96,7 +99,10 @@ class SFPPagePluginWidget extends WP_Widget {
 			'height'		=> '',
 			'hide_cover'	=> false,
 			'show_facepile'	=> true,
-			'show_posts'	=> false,
+			'small_header'	=> false,
+			'timeline'		=> false,
+			'events'		=> false,
+			'messages'		=> false,
 			
 			'locale'		=> 'en_US'
 		);
@@ -122,16 +128,20 @@ class SFPPagePluginWidget extends WP_Widget {
 		<label for="<?php echo $this->get_field_id('width'); ?>"><?php _e('Width:'); ?></label> 
 		<input size="6" id="<?php echo $this->get_field_id('width'); ?>" name="<?php echo $this->get_field_name('width'); ?>" type="text" value="<?php echo $width; ?>" />px
 		<p class="description">
-			The plugin will automatically adapt to the width of its parent element on page load if parent's width is lower than plugin's. Min is 280 and Max is 500.
+			The plugin will automatically adapt to the width of its parent element on page load if parent's width is lower than plugin's. Min is 180 and Max is 500.
 		</p>	
 		<label for="<?php echo $this->get_field_id('height'); ?>"><?php _e('Height:'); ?></label> 
 		<input size="6" id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" value="<?php echo $height; ?>" />px
-		<p class="description">Minimum is 130.</p>
+		<p class="description">Minimum is 70.</p>
 		<?php 
 			// Add-ons hook
 			do_action( "sfp_page_plugin_widget_form_after_inputs", $instance, $this, $sfplugin );
 		?>
 		<table>
+			<tr><td>
+				<br/>
+				<b><?php _e('Header'); ?></b>
+			</td></tr>
 			<tr><td>
 				<label for="<?php echo $this->get_field_id('hide_cover'); ?>"><?php _e('Hide Cover Photo'); ?></label> 
 				</td><td>
@@ -143,9 +153,28 @@ class SFPPagePluginWidget extends WP_Widget {
 				<input id="<?php echo $this->get_field_id('show_facepile'); ?>" type="checkbox" name="<?php echo $this->get_field_name('show_facepile'); ?>" <?php checked(isset($show_facepile) ? $show_facepile : 0); ?>/>
 			</td></tr>
 			<tr><td>
-				<label for="<?php echo $this->get_field_id('show_posts'); ?>"><?php _e('Show Page Posts'); ?></label> 
+				<label for="<?php echo $this->get_field_id('small_header'); ?>"><?php _e('Small Header'); ?></label> 
 				</td><td>
-				<input id="<?php echo $this->get_field_id('show_posts'); ?>" type="checkbox" name="<?php echo $this->get_field_name('show_posts'); ?>" <?php checked(isset($show_posts) ? $show_posts : 0); ?>/> 
+				<input id="<?php echo $this->get_field_id('small_header'); ?>" type="checkbox" name="<?php echo $this->get_field_name('small_header'); ?>" <?php checked(isset($small_header) ? $small_header : 0); ?>/>
+			</td></tr>
+			<tr><td>
+				<br/>
+				<b><?php _e('Tabs'); ?></b>
+			</td></tr>
+			<tr><td>
+				<label for="<?php echo $this->get_field_id('timeline'); ?>"><?php _e('Show Timeline'); ?></label> 
+				</td><td>
+				<input id="<?php echo $this->get_field_id('timeline'); ?>" type="checkbox" name="<?php echo $this->get_field_name('timeline'); ?>" <?php checked(isset($timeline) ? $timeline : 0); ?>/> 
+			</td></tr>
+			<tr><td>
+				<label for="<?php echo $this->get_field_id('events'); ?>"><?php _e('Show Events'); ?></label> 
+				</td><td>
+				<input id="<?php echo $this->get_field_id('events'); ?>" type="checkbox" name="<?php echo $this->get_field_name('events'); ?>" <?php checked(isset($events) ? $events : 0); ?>/> 
+			</td></tr>
+			<tr><td>
+				<label for="<?php echo $this->get_field_id('messages'); ?>"><?php _e('Show Messages'); ?></label> 
+				</td><td>
+				<input id="<?php echo $this->get_field_id('messages'); ?>" type="checkbox" name="<?php echo $this->get_field_name('messages'); ?>" <?php checked(isset($messages) ? $messages : 0); ?>/> 
 			</td></tr>
 			<?php 
 				// Add-ons hook
@@ -192,7 +221,10 @@ function sfp_page_plugin_shortcode ( $instance ) {
 		'height'		=> '',
 		'hide_cover'	=> false,
 		'show_facepile'	=> true,
-		'show_posts'	=> false,
+		'small_header'	=> false,
+		'timeline'		=> false,
+		'events'		=> false,
+		'messages'		=> false,
 		'locale'		=> 'en_US'
 	), $instance ) );
 
@@ -226,7 +258,10 @@ function sfp_page_plugin ( $instance = array() ) {
 		'height'		=> '',
 		'hide_cover'	=> false,
 		'show_facepile'	=> true,
-		'show_posts'	=> false,
+		'small_header'	=> false,
+		'timeline'		=> false,
+		'events'		=> false,
+		'messages'		=> false,
 		'locale'		=> 'en_US'
 	), $instance ) );
 	

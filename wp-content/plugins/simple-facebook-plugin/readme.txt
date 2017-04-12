@@ -3,11 +3,11 @@
 Contributors: topdevs, fornyhucker
 Tags: social, facebook, fb, fb like, like box, likebox, page plugin, widget, shortcode, responsive, template tag, sidebar, fb page plugin
 Requires at least: 2.8
-Tested up to: 4.6.1
-Stable tag: trunk
+Tested up to: 4.7.3
+Stable tag: 1.5
 License: GPLv2 or later
 
-Lets you easily embed and promote any Facebook Page on your website. Your visitors can like and share the Page without having to leave your site.
+Lets you easily embed and promote any Facebook Page on your website. Your visitors can like, share, see Page events or even sand a message without having to leave your site.
 
 == Description ==
 
@@ -18,6 +18,10 @@ Simple Facebook Plugin enables Facebook Page admins to promote their Pages and e
 * See how many users already like this Page, and which of their friends like it too
 * Read recent posts from the Page
 * Like the Page with one click, without needing to visit the Page
+* See Page Events
+* Send messages to your Page\*
+
+\**To enable messaging on your Facebook page go to your Page Settings. In the row Messages check Allow people to contact my Page privately by showing the Message button*
 
 You can easily integrate Like Box using WordPress Widgets and Shortcodes. Visit [Plugin Page](http://topdevs.net/simple-facebook-plugin/ "See 'Simple Facebook Plugin' Page") for more info and examples.
 
@@ -55,7 +59,10 @@ Use `[sfp-page-plugin]` shortcode inside your post or page. This shortcode suppo
 * height - number
 * hide_cover - *true* or *false*
 * show_facepile - *true* or *false*
-* show_posts - *true* or *false*
+* small_header - *true* or *false*
+* timeline - *true* or *false*
+* events - *true* or *false*
+* messages - *true* or *false*
 * locale - valid language code (e.g. *en_US* or *es_MX*) see [.xml file](http://www.facebook.com/translations/FacebookLocales.xml "Facebook locales XML") with all Facebook locales
 
 
@@ -90,6 +97,12 @@ Page Plugin is only for Pages and **not** for Profiles, Events and Groups.
 3. Widget with posts on your website.
 
 == Changelog ==
+
+= 1.5 =
+* Added Events and Messages tabs
+* Added Small Header Option
+* Fixed PHP7 Warning and Notice messages
+* Removed deprecated Like Box widget
 
 = 1.4.1 =
 * Redirect issue fixed

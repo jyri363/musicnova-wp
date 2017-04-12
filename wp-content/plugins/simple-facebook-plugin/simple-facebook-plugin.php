@@ -3,13 +3,13 @@
 Plugin Name: Simple Facebook Plugin
 Plugin URI: http://plugins.topdevs.net/simple-facebook-plugin
 Description: Allows you to integrate Facebook "Page Plugin" into your WordPress Site.
-Version: 1.4.1
+Version: 1.5
 Author: topdevs.net
 Author URI: http://codecanyon.net/user/topdevs/portfolio?ref=topdevs
 License: GPLv2 or later
 */
 
-define( "SFP_VERSION", '1.4' );
+define( "SFP_VERSION", '1.5' );
 
 /**
 * Main SF Plugin Class
@@ -57,7 +57,6 @@ if ( !class_exists( 'SFPlugin' ) ) {
 		 */
 		protected function loadFiles() {
 			// Include social plugins files
-			require_once( $this->pluginPath . 'lib/sfp-like-box.php' );
 			require_once( $this->pluginPath . 'lib/sfp-page-plugin.php' );
 
 			// Allow addons load files
@@ -90,7 +89,6 @@ if ( !class_exists( 'SFPlugin' ) ) {
 		*/
 		public function addWidgets() {
 			
-			register_widget('SFPLikeBoxWidget'); // deprecated
 			register_widget('SFPPagePluginWidget');
 		
 			// Allow addons add widgets
@@ -102,7 +100,6 @@ if ( !class_exists( 'SFPlugin' ) ) {
 		*/
 		public function addShortcodes() {
 		
-			add_shortcode('sfp-like-box', 'sfp_like_box_shortcode');
 			add_shortcode('sfp-page-plugin', 'sfp_page_plugin_shortcode');
 			
 			// Allow addons add shortcodes
@@ -394,4 +391,5 @@ if ( !class_exists( 'SFPlugin' ) ) {
 // Create new SFPlugin instance
 $GLOBALS["sfplugin"] = new SFPlugin();
 
+// testing updates, may be removed later
 ?>
